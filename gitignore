@@ -1,0 +1,6 @@
+.keys.json
+.health.json
+.settings.json
+.logs/
+workspace/
+node_modules/

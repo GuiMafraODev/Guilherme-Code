@@ -1,0 +1,202 @@
+{
+  "order": [
+    "gemini",
+    "nvidia",
+    "deepseek",
+    "groq",
+    "openrouter",
+    "together",
+    "cohere",
+    "mistral",
+    "openai",
+    "anthropic"
+  ],
+  "routing": true,
+  "locals": [
+    {
+      "id": "local1",
+      "name": "agora vai",
+      "url": "http://localhost:11434/v1",
+      "models": [
+        "granite4:3b",
+        "qwen3.5:4b",
+        "qwen2.5-coder:3b"
+      ],
+      "ctx": 8192,
+      "kind": "ollama",
+      "autostart": true,
+      "enabled": true
+    }
+  ],
+  "supervisor": {
+    "enabled": false,
+    "model": "local1::qwen3:8b",
+    "roles": {
+      "local1::qwen3.5:4b": []
+    },
+    "approved": {
+      "local1::qwen3.5:4b": {
+        "version": 2,
+        "at": 1794774125031,
+        "caps": {
+          "responds": false,
+          "streaming": true,
+          "tools": false,
+          "json": false,
+          "jsonNeedsParams": false
+        },
+        "params": {},
+        "roleTests": {},
+        "roles": [],
+        "notes": [
+          "respondeu vazio"
+        ],
+        "loadMs": 5096,
+        "fp": "ollama|http://localhost:11434/v1|qwen3.5:4b",
+        "model": "qwen3.5:4b",
+        "kind": "ollama",
+        "vram": {
+          "pct": 100,
+          "state": "total"
+        }
+      },
+      "local1::qwen3:8b": {
+        "at": 1794753989941,
+        "model": "qwen3:8b",
+        "responds": true,
+        "tools": false,
+        "json": true,
+        "loadMs": 22513,
+        "tps": 0,
+        "gpu": "parcial",
+        "roles": [
+          "planejar",
+          "revisar"
+        ],
+        "notes": [
+          "não devolveu chamada de ferramenta no formato esperado",
+          "só 63% do modelo ficou na GPU: tende a ser lento"
+        ]
+      },
+      "local1::qwen2.5-coder:7b": {
+        "at": 1794754160452,
+        "model": "qwen2.5-coder:7b",
+        "responds": true,
+        "tools": false,
+        "json": true,
+        "loadMs": 11128,
+        "tps": 1.8,
+        "gpu": "parcial",
+        "roles": [
+          "planejar",
+          "revisar"
+        ],
+        "notes": [
+          "não devolveu chamada de ferramenta no formato esperado",
+          "só 76% do modelo ficou na GPU: tende a ser lento",
+          "velocidade baixa (~1.8 tokens/s)"
+        ]
+      },
+      "local1::granite4:3b": {
+        "version": 2,
+        "at": 1794774111221,
+        "caps": {
+          "responds": true,
+          "streaming": true,
+          "tools": true,
+          "json": true,
+          "jsonNeedsParams": false
+        },
+        "params": {},
+        "roleTests": {
+          "planejar": {
+            "ok": true,
+            "normalized": []
+          },
+          "explorar": {
+            "ok": true
+          },
+          "codar": {
+            "ok": true
+          },
+          "revisar": {
+            "ok": true
+          }
+        },
+        "roles": [
+          "planejar",
+          "explorar",
+          "codar",
+          "revisar"
+        ],
+        "notes": [],
+        "loadMs": 112,
+        "tpsEst": 28.7,
+        "extra": null,
+        "fp": "ollama|http://localhost:11434/v1|granite4:3b",
+        "model": "granite4:3b",
+        "kind": "ollama",
+        "vram": {
+          "pct": 100,
+          "state": "total"
+        }
+      },
+      "local1::qwen2.5-coder:3b": {
+        "version": 2,
+        "at": 1794774138851,
+        "caps": {
+          "responds": true,
+          "streaming": true,
+          "tools": false,
+          "json": true,
+          "jsonNeedsParams": false
+        },
+        "params": {
+          "reasoning_effort": "supported"
+        },
+        "roleTests": {
+          "planejar": {
+            "ok": true,
+            "normalized": []
+          },
+          "explorar": {
+            "ok": false,
+            "why": "sem suporte a ferramentas"
+          },
+          "codar": {
+            "ok": false,
+            "why": "sem suporte a ferramentas"
+          },
+          "revisar": {
+            "ok": true
+          }
+        },
+        "roles": [
+          "planejar",
+          "revisar"
+        ],
+        "notes": [
+          "ferramentas: não devolveu chamada de ferramenta no formato esperado"
+        ],
+        "loadMs": 3038,
+        "tpsEst": 21.9,
+        "extra": null,
+        "fp": "ollama|http://localhost:11434/v1|qwen2.5-coder:3b",
+        "model": "qwen2.5-coder:3b",
+        "kind": "ollama",
+        "vram": {
+          "pct": 100,
+          "state": "total"
+        }
+      }
+    },
+    "limits": {
+      "maxDelegations": 8,
+      "maxMinutes": 40,
+      "maxRetries": 1,
+      "maxAgentSteps": 250
+    },
+    "unloadAfter": true
+  },
+  "localWaitSec": 120
+}

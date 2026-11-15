@@ -1,0 +1,7 @@
+.keys.json
+.health.json
+.settings.json
+workspace/
+node_modules/
+skills/
+commands/
